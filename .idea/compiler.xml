@@ -6,7 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Backstage" />
+        <module name="Documents" />
         <module name="Eureka" />
+        <module name="Polaris" />
       </profile>
     </annotationProcessing>
   </component>

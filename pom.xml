@@ -12,6 +12,8 @@
 
     <modules>
         <module>System</module>
+        <module>Website</module>
+        <module>Documents</module>
     </modules>
 
     <parent>
