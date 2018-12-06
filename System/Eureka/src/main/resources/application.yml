@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: EurekaServer
+
+server:
+  port: 6001
+
+eureka:
+  instance:
+    hostname: localhost
+  server:
+    enable-self-preservation: true  #?
+    renewal-percent-threshold: 0.1  #?
+  client:
+    register-with-eureka: false #不用向注册中心注册,因为本身就是注册中心
+    fetch-registry: false       #?
