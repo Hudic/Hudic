@@ -16,8 +16,6 @@ public class Tool {
      * @param t:任意基本数据类型或引用数据类型
      * @return 符合Json格式要求的String
      * @author jiangcq
-     * @date 2018/12/7
-     * @mail 739765098@qq.com
      */
     public static <T> String parseToJsonString(T t) {
         Class c = t.getClass();
