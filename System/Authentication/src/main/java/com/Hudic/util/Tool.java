@@ -6,6 +6,8 @@ import com.alibaba.fastjson.JSONObject;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * jiangcq
@@ -72,17 +74,56 @@ public class Tool {
         return sb.toString();
     }
 
-//    public static void main(String[] args) {
-//        User user = new User("admin", "123456", 1);
-////        System.out.println(Tool.parseToJsonString(user));
-////        System.out.println(Tool.parseToJsonString(124));
-////        System.out.println(Tool.parseToJsonString(0.123));
-////        System.out.println(Tool.parseToJsonString("jahhah"));
-////        System.out.println(JSONObject.toJSONString());
-//        String jsonString = Tool.parseToJsonString(user);
-//        System.out.println(jsonString);
-////        JSONObject jsonObject = JSONObject.parseObject("{username: 'admin', password: 123456, role :1,}");
-//        JSONObject jsonObject = JSONObject.parseObject(jsonString);
-//        System.out.println(jsonObject.toString());
-//    }
+
+    public static <T> JSONObject buildSuccessResult(T t) {
+        JSONObject ret = new JSONObject();
+        ret.put("status", 1);//1操作成功
+        ret.put("msg", "success");
+        ret.put("data", t.toString());//操作成功就不需要再返回原参数？->也返回一下吧
+        return ret;
+    }
+
+    public static <T> JSONObject buildFailureResult(T t) {
+        JSONObject ret = new JSONObject();
+        ret.put("status", 0);//0操作失败
+        ret.put("msg", "failure");
+        ret.put("data", t.toString());
+        return ret;
+    }
+
+    public static <T> JSONObject buildBadRequestResult(T t) {
+        JSONObject ret = new JSONObject();
+        ret.put("status", -1);//-1请求有问题
+        ret.put("msg", "Bad request");
+        ret.put("data", t.toString());
+        return ret;
+    }
+
+    /**
+     * 检查必要的字段(是否有为null和空字符串的字段)
+     *
+     * @param t:传入对象
+     * @param params：需要检查的字段名
+     * @return {status:0/1,msg:"xxx"}
+     */
+    public static <T> JSONObject checkNecessaryParams(T t, String... params) {
+        JSONObject jsonObject = JSONObject.parseObject(Tool.parseToJsonString(t));
+        JSONObject ret = new JSONObject();
+        List<String> nullParams = new ArrayList<>();
+        for (String param : params) {
+            if (jsonObject.get(param) == null || "".equals(jsonObject.get(param))) {
+                nullParams.add(param);
+            }
+        }
+        if (nullParams.size() > 0) {
+            ret.put("status", 0);//0不通过
+            ret.put("msg", "缺少参数:" + nullParams.toString());
+        } else {
+            ret.put("status", 1);//1操作成功，通过
+            ret.put("msg", "参数正常");
+        }
+        return ret;
+    }
+
+
 }

@@ -1,6 +1,28 @@
 spring:
   application:
     name: Authentication
+  datasource:
+    url: jdbc:mysql://localhost:3306/Hudic?useUnicode=true&characterEncoding=utf8&useSSL=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Hongkong
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    jpa:
+      repositories:
+        enabled: true
+#  jpa:
+#    properties:
+#      hibernate:
+#        hbm2ddd1=l:
+#          auto: create
+#    这个参数是为了方便处理数据库表，该属性的值一般有如下几个：
+#
+#validate               加载hibernate时，验证创建数据库表结构
+#create                  每次加载hibernate，重新创建数据库表结构，这就是导致数据库表数据丢失的原因。
+#create-drop        加载hibernate时创建，退出是删除表结构
+#update                 加载hibernate自动更新数据库结构
+#    ?serverTimezone=Shanghai&?useUnicode=true&characterEncoding=utf8&useSSL=false
+#    ?useSSL=false&amp;serverTimezone=UTC&amp;characterEncoding=UTF8
 
 server:
   port: 6101
