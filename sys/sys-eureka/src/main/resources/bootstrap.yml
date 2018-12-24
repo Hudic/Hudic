@@ -1,0 +1,9 @@
+server:
+  port: 6001
+spring:
+  application:
+    name: sys-eureka
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false

@@ -1,0 +1,16 @@
+server:
+  port: 6102
+spring:
+  application:
+    name: web-back
+  cloud:
+    config:
+      name: hudic-config
+      profile: dev
+      uri: http://localhost:6002/
+      label: master
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
