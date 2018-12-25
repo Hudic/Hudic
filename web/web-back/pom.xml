@@ -12,15 +12,20 @@
     <artifactId>web-back</artifactId>
 
     <dependencies>
-        <!--config client-->
+        <!--Eureka client依赖已经配置在父级pom-->
+        <!--Config client-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
-        <!--监控云端config文件的变化-->
+        <!--感知云端config文件的变化/达到refresh的功能?不，只是添加refresh等接口，总共可以暴露三个接口：refresh、health、info-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
         </dependency>
     </dependencies>
 
