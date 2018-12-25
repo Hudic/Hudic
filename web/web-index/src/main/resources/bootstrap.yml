@@ -10,3 +10,4 @@ eureka:
   instance:
     status-page-url:  http://${spring.cloud.client.ip-address}:${server.port}/doc.html
 #    status-page-url: http://${spring.cloud.client.ip-address}:${server.port}/swagger-ui.html
+
