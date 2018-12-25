@@ -20,7 +20,7 @@ public class HelloController {
     private String database;
 
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    public String from() {
+    public String getHello() {
         return hello;
     }
 
