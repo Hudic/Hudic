@@ -5,34 +5,31 @@ spring:
     name: web-back
   cloud:
     config:
-      name: hudic-config
-      profile: dev
-      label: master
-#      uri: http://localhost:6002/
       discovery:
-        enabled: true
-        service-id: sys-config
-#        server端spring.application.name的值
+        enabled: true               # 表示自己是一个config服务调用端/消费端 (可以去寻找、调用config服务生产端？)
+        service-id: sys-config      # (本地)server端spring.application.name的值
+        # uri: http://localhost:6002/ 支持服务名称后就不再需要配置服务端地址了，方便服务地址的改变
+      name: hudic-config            # (云端)配置文件的前半部分(完整的文件名是Hudic-config-dev.properties)
+      profile: dev                  # (云端)配置文件的后半部分，也可以hudic 和 config-dev的形式分割
+      label: master                 # (云端)仓库的branch(分支)
     bus:
       trace:
-        enabled: true
-        # 开启消息跟踪
-  rabbitmq:
+        enabled: true               # 开启消息跟踪
+  rabbitmq:                         # 配置本地rabbitmq的信息
     host: localhost
-    port: 5672
-#    port: 不是管理页面的15672
+    port: 5672                      # port: 不是管理页面的15672，注意区分
     username: admin
     password: 123456
 management:
   endpoints:
     web:
       exposure:
-        include: "*"  # include: ["refresh","health"]
+        include: "*"                # 暴露端口(refresh、health、info),*表示暴露全部，若只需暴露部分端口，可以写成include: ["refresh","health"]
 #  security:
 #    enabled: false 刷新时关闭安全验证，新版已被上面配置替代
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:6001/eureka/
+      defaultZone: http://localhost:6001/eureka/        # 配置eureka中心的地址
   instance:
-    status-page-url:  http://${spring.cloud.client.ip-address}:${server.port}/doc.html
+    status-page-url:  http://${spring.cloud.client.ip-address}:${server.port}/doc.html        # 配置swagger页面，第三方是doc.html,官方的页面是swagger.html
