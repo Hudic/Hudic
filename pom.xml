@@ -17,7 +17,7 @@
     <artifactId>Hudic</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Hudic</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Demo project for Spring Boot &amp; Spring Cloud</description>
 
     <properties>
         <java.version>1.8</java.version>
