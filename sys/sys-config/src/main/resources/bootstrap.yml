@@ -6,9 +6,11 @@ spring:
   cloud:
     config:
       server:
+        #        native:
+        #          search-locations: classpath:/dev
         git:
-          # uri: https://github.com/Hudic/Hudic/                  # 配置git仓库的地址
-          # search-paths: config-repo                             # git仓库地址下的相对地址，可以配置多个，用,分割。
+        # uri: https://github.com/Hudic/Hudic/                  # 配置git仓库的地址
+        # search-paths: config-repo                             # git仓库地址下的相对地址，可以配置多个，用,分割。
           uri: https://github.com/Hudic/Configuration/          # 存放了配置文件的仓库
           search-paths: Hudic                                   # 仓库下配置文件所处的文件夹
           username:                                             # git仓库的账号
